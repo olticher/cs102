@@ -68,6 +68,10 @@ def generate_keypair(p, q):
 
 def encrypt(pk, plaintext):
     key, n = pk
-    cipher = [(ord(char) ** key) % n for char in plaintext]
-    return cipher
+    cipher_massive = [(ord(char) ** key) % n for char in plaintext]
+    return cipher_massive
 
+def decrypt(pk, ciphertext):
+    key, n = pk
+    plaintext_massive = [chr((char ** key) % n) for char in ciphertext]
+    return ''.join(plaintext_massive)
