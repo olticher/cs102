@@ -42,7 +42,7 @@ def multiplicative_inverse(e, phi):
     number1 = e
     number2 = phi
     x1, x2, y1, y2 = 0, 1, 1, 0
-    while e != 0:
+    while e > 0:
         cifra, phi, e = phi // e, e, phi % e
         y1, y2 = y2, y1 - cifra * y2
         x1, x2 = x2, x1 - cifra * x2
@@ -75,3 +75,18 @@ def decrypt(pk, ciphertext):
     key, n = pk
     plaintext_massive = [chr((char ** key) % n) for char in ciphertext]
     return ''.join(plaintext_massive)
+
+if __name__ == '__main__':
+    print("RSA Encrypter/ Decrypter")
+    p = int(input("Enter a prime number (17, 19, 23, etc): "))
+    q = int(input("Enter another prime number (Not one you entered above): "))
+    print("Generating your public/private keypairs now . . .")
+    public, private = generate_keypair(p, q)
+    print("Your public key is ", public, " and your private key is ", private)
+    message = input("Enter a message to encrypt with your private key: ")
+    encrypted_msg = encrypt(private, message)
+    print("Your encrypted message is: ")
+    print(''.join(map(lambda x: str(x), encrypted_msg)))
+    print("Decrypting message with public key ", public, " . . .")
+    print("Your message is:")
+    print(decrypt(public, encrypted_msg))
