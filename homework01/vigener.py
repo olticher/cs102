@@ -8,7 +8,7 @@ def encrypt_vigenere(plaintext, keyword):
     'LXFOPVEFRNHR'
     """
     # PUT YOUR CODE HERE
-    ciphertext = ''
+    ciphertext = ""
     symbols = '1234567890.,-=<>?|+_)(*&^%$#@!'
     for j in plaintext:
         if j in symbols:
