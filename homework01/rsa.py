@@ -66,3 +66,8 @@ def generate_keypair(p, q):
     d = multiplicative_inverse(e, phi)
     return ((e, n), (d, n))
 
+def encrypt(pk, plaintext):
+    key, n = pk
+    cipher = [(ord(char) ** key) % n for char in plaintext]
+    return cipher
+
