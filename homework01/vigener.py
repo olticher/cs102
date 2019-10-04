@@ -23,9 +23,9 @@ def encrypt_vigenere(plaintext, keyword):
         else:
             value = ord(keyword[number])-97
         if char.isupper():
-            ciphertext += chr((ord(char) + shift - 65) % 26 + 65)
+            ciphertext += chr((ord(char) + value - 65) % 26 + 65)
         else:
-            ciphertext += chr((ord(char) + shift - 97) % 26 + 97)
+            ciphertext += chr((ord(char) + value - 97) % 26 + 97)
         number += 1
     return ciphertext
 
@@ -55,9 +55,9 @@ def decrypt_vigenere(ciphertext, keyword):
         elif keyword[number].islower():
             value = ord(keyword[number]) - 97 
         if char.isupper():
-            plaintext += chr((ord(char) - shift - 65) % 26 + 65)
+            plaintext += chr((ord(char) - value - 65) % 26 + 65)
         elif char.islower():
-            plaintext += chr((ord(char) - shift - 97) % 26 + 97)
+            plaintext += chr((ord(char) - value - 97) % 26 + 97)
         number += 1  
 
     return plaintext
