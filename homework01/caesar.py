@@ -1,5 +1,5 @@
 def encrypt_caesar(plaintext):
-	"""
+    """
     >>> encrypt_caesar("PYTHON")
     'SBWKRQ'
     >>> encrypt_caesar("python")
@@ -10,18 +10,17 @@ def encrypt_caesar(plaintext):
     ''
     """
     # PUT YOUR CODE HERE
-	ciphertext = ""
+    ciphertext = ""
+    symbols = '1234567890.,-=<>?|+_)(*&^%$#@!'
+    for char in plaintext:
+        if char in symbols:
+            ciphertext += char
+        elif char.islower():
+            ciphertext += chr((ord(char) + 3 - 97) % 26 + 97)
+        elif char.isupper():
+            ciphertext += chr((ord(char) + 3 - 65) % 26 + 65)
 
-	symbols='1234567890.,-=<>?|+_)(*&^%$#@!'
-	for char in plaintext:
-		if char in symbols:
-			ciphertext+=char
-		elif char.islower():
-			ciphertext+=chr((ord(char)+3-97)%26+97)
-		elif char.isupper():
-			ciphertext+=chr((ord(char)+3-65)%26+65)
-
-	return ciphertext
+    return ciphertext
 
 
 def decrypt_caesar(ciphertext): 
@@ -41,7 +40,7 @@ def decrypt_caesar(ciphertext):
     symbols = '1234567890.,/!@#$%^&*()_-+={[] ' 
     for char in ciphertext: 
         if char in symbols: 
-            plaintext+= char
+            plaintext += char
         elif char.isupper(): 
             plaintext += chr((ord(char) - 3 - 65) % 26 + 65) 
         elif char.islower(): 
