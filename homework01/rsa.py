@@ -29,3 +29,25 @@ def gcd(a, b):
         return b
     else:
         return gcd(b %a, a)
+
+
+def multiplicative_inverse(e, phi):
+    """
+    Euclid's extended algorithm for finding the multiplicative
+    inverse of two numbers.
+
+    >>> multiplicative_inverse(7, 40)
+    23
+    """
+    number1 = e
+    number2 = phi
+    x1, x2, y1, y2 = 0, 1, 1, 0
+    while e != 0:
+        cifra, phi, e = phi // e, e, phi % e
+        y1, y2 = y2, y1 - cifra * y2
+        x1, x2 = x2, x1 - cifra * x2
+    if number1 > number2:
+        return y1 % number1
+    else:
+        return x1 % number2
+
