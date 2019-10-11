@@ -11,39 +11,35 @@ def encrypt_caesar(plaintext):
     """
     # PUT YOUR CODE HERE
     ciphertext = ""
-    symbols = '1234567890.,-=<>?|+_)(*&^%$#@!'
     for char in plaintext:
-        if char in symbols:
+        if char.islower():
+            ciphertext += chr((ord(char) + 3 - ord('a')) % 26 + ord('a'))
+        if char.isupper():
+            ciphertext += chr((ord(char) + 3 - ord('A')) % 26 + ord('A'))
+        if not char.isalpha():
             ciphertext += char
-        elif char.islower():
-            ciphertext += chr((ord(char) + 3 - 97) % 26 + 97)
-        elif char.isupper():
-            ciphertext += chr((ord(char) + 3 - 65) % 26 + 65)
-
     return ciphertext
 
 
-def decrypt_caesar(ciphertext): 
-    """ 
-    Decrypts a ciphertext using a Caesar cipher. 
-    »> decrypt_caesar("SBWKRQ") 
-    'PYTHON' 
-    »> decrypt_caesar("sbwkrq") 
-    'python' 
-    »> decrypt_caesar("Sbwkrq3.6") 
-    'Python3.6' 
-    »> decrypt_caesar("") 
-    '' 
-    """ 
-    # PUT YOUR CODE HERE 
-    plaintext = '' 
-    symbols = '1234567890.,/!@#$%^&*()_-+={[] ' 
-    for char in ciphertext: 
-        if char in symbols: 
+def decrypt_caesar(ciphertext):
+    """
+    Decrypts a ciphertext using a Caesar cipher.
+    »> decrypt_caesar("SBWKRQ")
+    'PYTHON'
+    »> decrypt_caesar("sbwkrq")
+    'python'
+    »> decrypt_caesar("Sbwkrq3.6")
+    'Python3.6'
+    »> decrypt_caesar("")
+    ''
+    """
+    # PUT YOUR CODE HERE
+    plaintext = ''
+    for char in plaintext:
+        if char.islower():
+            plaintext += chr((ord(char) + 3 - ord('a')) % 26 + ord('a'))
+        if char.isupper():
+            plaintext += chr((ord(char) + 3 - ord('A')) % 26 + ord('A'))
+        if not char.isalpha():
             plaintext += char
-        elif char.isupper(): 
-            plaintext += chr((ord(char) - 3 - 65) % 26 + 65) 
-        elif char.islower(): 
-            plaintext += chr((ord(char) - 3 - 97) % 26 + 97) 
-
     return plaintext
