@@ -9,9 +9,8 @@ def encrypt_vigenere(plaintext, keyword):
     """
     # PUT YOUR CODE HERE
     ciphertext = ""
-    symbols = '1234567890.,-=<>?|+_)(*&^%$#@!'
     for j in plaintext:
-        if j in symbols:
+        if not (char.islower() or char.isupper()):
             ciphertext += j
     if len(plaintext) > len(keyword):
         keyword += keyword*((len(plaintext) // len(keyword))-1)
@@ -23,9 +22,9 @@ def encrypt_vigenere(plaintext, keyword):
         else:
             value = ord(keyword[number])-97
         if char.isupper():
-            ciphertext += chr((ord(char) + value - 65) % 26 + 65)
+            ciphertext += chr((ord(char) + value - 'А') % 26 + 'А')
         else:
-            ciphertext += chr((ord(char) + value - 97) % 26 + 97)
+            ciphertext += chr((ord(char) + value - 'а') % 26 + 'а')
         number += 1
     return ciphertext
 
@@ -40,10 +39,9 @@ def decrypt_vigenere(ciphertext, keyword):
     'ATTACKATDAWN'
     """
     # PUT YOUR CODE HERE
-    symbols = '1234567890.,-=<>?|+_)(*&^%$#@!'
     plaintext = ''
     for j in ciphertext:
-        if j in symbols:
+        if not (char.islower() or char.isupper()):
             plaintext += j
     if len(ciphertext) > len(keyword):
         keyword += keyword*((len(ciphertext) // len(keyword))-1)
@@ -55,9 +53,9 @@ def decrypt_vigenere(ciphertext, keyword):
         elif keyword[number].islower():
             value = ord(keyword[number]) - 97 
         if char.isupper():
-            plaintext += chr((ord(char) - value - 65) % 26 + 65)
+            plaintext += chr((ord(char) - value - 'А') % 26 + 'А')
         elif char.islower():
-            plaintext += chr((ord(char) - value - 97) % 26 + 97)
+            plaintext += chr((ord(char) - value - 'а') % 26 + 'а')
         number += 1  
 
     return plaintext
