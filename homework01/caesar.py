@@ -13,12 +13,12 @@ def encrypt_caesar(plaintext):
     ciphertext = ""
     symbols = '1234567890.,-=<>?|+_)(*&^%$#@!'
     for char in plaintext:
-        if char in symbols:
+        if not (char.islower() or char.isupper()):
             ciphertext += char
         elif char.islower():
-            ciphertext += chr((ord(char) + 3 - 97) % 26 + 97)
+            ciphertext += chr((ord(char) + 3 - 'a') % 26 + 'a')
         elif char.isupper():
-            ciphertext += chr((ord(char) + 3 - 65) % 26 + 65)
+            ciphertext += chr((ord(char) + 3 - 'A') % 26 + 'A')
 
     return ciphertext
 
@@ -39,11 +39,11 @@ def decrypt_caesar(ciphertext):
     plaintext = '' 
     symbols = '1234567890.,/!@#$%^&*()_-+={[] ' 
     for char in ciphertext: 
-        if char in symbols: 
-            plaintext += char
+        if char.islower():
+            plaintext += chr((ord(char) - 3 - 'a') % 26 + 'a')
         elif char.isupper(): 
-            plaintext += chr((ord(char) - 3 - 65) % 26 + 65) 
-        elif char.islower(): 
-            plaintext += chr((ord(char) - 3 - 97) % 26 + 97) 
+            plaintext += chr((ord(char) - 3 - 'A') % 26 + 'A') 
+        elif not (char.islower() or char.isupper()):
+            plaintext += char
 
     return plaintext
