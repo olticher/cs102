@@ -19,16 +19,17 @@ def is_prime(n):
 def gcd(a, b):
     """
     Euclid's algorithm for determining the greatest common divisor.
-
     >>> gcd(12, 15)
     3
     >>> gcd(3, 7)
     1
     """
-    if a == 0:
-        return b
-    else:
-        return gcd(b %a, a)
+    while a > 0 and b > 0:
+        if a > b:
+            a %= b
+        else:
+            b %= a
+    return a+b
 
 
 def multiplicative_inverse(e, phi):
@@ -43,9 +44,9 @@ def multiplicative_inverse(e, phi):
     number2 = phi
     x1, x2, y1, y2 = 0, 1, 1, 0
     while e > 0:
-        cifra, phi, e = phi // e, e, phi % e
-        y1, y2 = y2, y1 - cifra * y2
-        x1, x2 = x2, x1 - cifra * x2
+        c, phi, e = phi // e, e, phi % e
+        y1, y2 = y2, y1 - с * y2
+        x1, x2 = x2, x1 - c * x2
     if number1 > number2:
         return y1 % number1
     else:
