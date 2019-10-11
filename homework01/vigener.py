@@ -51,11 +51,11 @@ def decrypt_vigenere(ciphertext, keyword):
         if keyword[number].isupper():
             value = ord(keyword[number]) - 65
         elif keyword[number].islower():
-            value = ord(keyword[number]) - 97 
+            value = ord(keyword[number]) - 97
         if char.isupper():
             plaintext += chr((ord(char) - value - 'А') % 26 + 'А')
         elif char.islower():
             plaintext += chr((ord(char) - value - 'а') % 26 + 'а')
-        number += 1  
+        number += 1 
 
     return plaintext
