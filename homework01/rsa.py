@@ -12,10 +12,10 @@ def is_prime(n):
     >>> is_prime(8)
     False
     """
-    for i in range(2, int(math.sqrt(n) + 1)):
-        if n % i == 0:
-            return False
-    return n > 1
+    d = 2
+    while n % d != 0:
+        d += 1
+    return d == n
 
 
 def gcd(a, b):
