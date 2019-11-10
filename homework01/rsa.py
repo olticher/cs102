@@ -12,11 +12,11 @@ def is_prime(n):
     >>> is_prime(8)
     False
     """
-    for i in range(2, int(math.sqrt(n) + 1)):
-        if n % i == 0:
-            return False
-    return n > 1
-
+    d = 2
+    while n % d != 0:
+        d += 1
+    return d == n
+print(is_prime(3))
 
 def gcd(a, b):
     """
@@ -26,13 +26,10 @@ def gcd(a, b):
     >>> gcd(3, 7)
     1
     """
-    while a > 0 and b > 0:
-        if a > b:
-            a %= b
-        else:
-            b %= a
-    return a+b
-
+    while b:
+        a, b = b, a % b
+    return a
+print(gcd(12,15))
 
 def multiplicative_inverse(e, phi):
     """
